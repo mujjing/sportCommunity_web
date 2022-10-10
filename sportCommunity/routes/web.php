@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,4 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/list', [ListController::class, 'index'])->name('list');
