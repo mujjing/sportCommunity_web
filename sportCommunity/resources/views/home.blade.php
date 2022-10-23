@@ -69,30 +69,48 @@ const getClickMap = (i) => () => {
 for (let i in data) {
     const target = data[i];
     const latlng = new naver.maps.LatLng(target.shop_latitude, target.shop_longitude);
-    var target_icon = `<div class="marker20thou"><img src="{{ asset('img/preparing.png') }}" class="overTheTwenty"></div>`;
+    var target_icon;
+
+    if (target.shop_machine == "골프존") {
+        target_icon = 
+        `<div class= "infowindow_wrap"> 
+        <div class= "infowindow_title"> 「${target.shop_name == null ? "-" : target.shop_name}」 </div> 
+        <div class= "infowindow_address"> 가게주소 : ${target.shop_addr_short == null ? "-" : target.shop_addr_short} </div>
+        </div>
+        <div class="marker20thou"><img src="{{ asset('img/pin1.png') }}" class="overTheTwenty"></div>`;
+    } else if (target.shop_machine == "골프존파크") {
+        target_icon = 
+        `<div class= "infowindow_wrap"> 
+        <div class= "infowindow_title"> 「${target.shop_name == null ? "-" : target.shop_name}」 </div> 
+        <div class= "infowindow_address"> 가게주소 : ${target.shop_addr_short == null ? "-" : target.shop_addr_short} </div>
+        </div>
+        <div class="marker20thou"><img src="{{ asset('img/pin2.png') }}" class="overTheTwenty"></div>`;
+    } else {
+        target_icon = 
+        `<div class= "infowindow_wrap"> 
+        <div class= "infowindow_title"> 「${target.shop_name == null ? "-" : target.shop_name}」 </div> 
+        <div class= "infowindow_address"> 가게주소 : ${target.shop_addr_short == null ? "-" : target.shop_addr_short} </div>
+        </div>
+        <div class="marker20thou"><img src="{{ asset('img/pin3.png') }}" class="overTheTwenty"></div>`;
+    }
 
     let maker = new naver.maps.Marker({
         map: map,
         position: latlng,
         icon: {
-            content: target_icon,
-            anchor: new naver.maps.Point(7.5, 7.5),
+            content: target_icon
         },
     });
 
-    const content = `<div class= "infowindow_wrap"> 
-    <div class= "infowindow_title"> 「${target.shop_name == null ? "-" : target.shop_name}」 </div> 
-    <div class= "infowindow_address"> 가게주소 : ${target.shop_addr_short == null ? "-" : target.shop_addr_short} </div>
-    </div>`;
+    const content = [].join('');
     const infowindow = new naver.maps.InfoWindow({
         content : content,
         backgroundColor : "#00ff0000",
-        borderColor : "#00ff0000",
-        anchorSize: new naver.maps.Size(50.0, 50.0),
+        borderColor : "#00ff0000"
     });
 
     markerList.push(maker);
-    infowindowList.push(infowindow);
+    // infowindowList.push(infowindow);
 }
 
 for (let i = 0, ii= markerList.length; i < ii; i++) {
