@@ -22,4 +22,9 @@ class HomeController extends Controller
     {
         return view('index');
     }
+
+    public function detail()
+    {
+        return view('detail');
+    }
 }

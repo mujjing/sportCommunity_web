@@ -73,10 +73,12 @@ for (let i in data) {
 
     if (target.shop_machine == "골프존") {
         target_icon = 
-        `<div class= "infowindow_wrap"> 
+        `<a href= {{route('detail') }}>
+        <div class= "infowindow_wrap"> 
         <div class= "infowindow_title"> 「${target.shop_name == null ? "-" : target.shop_name}」 </div> 
         <div class= "infowindow_address"> 가게주소 : ${target.shop_addr_short == null ? "-" : target.shop_addr_short} </div>
         </div>
+        </a>
         <div class="marker20thou"><img src="{{ asset('img/pin1.png') }}" class="overTheTwenty"></div>`;
     } else if (target.shop_machine == "골프존파크") {
         target_icon = 
